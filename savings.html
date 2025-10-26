@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings Fund Manager</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/savings.css">
+</head>
+<body>
+    <!-- MAIN PAGE -->
+<div id="mainPage" class="page active">
+    <h2>My Funds</h2>
+    <div id="fundsGrid"></div>
+    <div class="center">
+      <button onclick="showAddFund()">+ Create Fund</button>
+    </div>
+  </div>
+  
+  <!-- ADD FUND PAGE -->
+  <div id="addFundPage" class="page">
+    <h2>Create New Fund</h2>
+    <form id="addFundForm">
+      <label for="fundName">Fund Name</label>
+      <input type="text" id="fundName" required>
+  
+      <label for="targetAmount">Target Amount</label>
+      <input type="number" id="targetAmount" required>
+  
+      <button type="submit">Create</button>
+      <button type="button" onclick="showMain()">Cancel</button>
+    </form>
+  </div>
+  
+  <!-- FUND DETAILS PAGE -->
+  <div id="fundDetailsPage" class="page">
+    <h2 id="detailFundNameTitle"></h2>
+  
+    <label>Current Amount:</label>
+    <input type="text" id="detailCurrentAmount" readonly>
+  
+    <label>Target Amount:</label>
+    <input type="number" id="detailTargetAmount">
+  
+    <label>Add Money:</label>
+    <input type="number" id="addMoneyAmount" placeholder="Enter amount to add">
+  
+    <div class="progress-container large">
+      <div class="progress-bar large">
+        <div id="detailProgressFill" class="progress-fill"></div>
+      </div>
+      <div id="detailProgressText" class="progress-text"></div>
+    </div>
+  
+    <div class="center">
+      <button onclick="updateFund()">💾 Update Fund</button>
+      <button id="deleteFundBtn" onclick="deleteFund()">🗑️ Delete Fund</button>
+      <button onclick="showMain()">⬅️ Back</button>
+    </div>
+  </div>
+  
+  
+<script src="/js/savings.js"></script>
+    
+</body>
+</html>

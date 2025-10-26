@@ -1,0 +1,141 @@
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f3f6fb;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .page {
+    display: none;
+    padding: 20px;
+  }
+
+  .page.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  #fundsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .fund-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    padding: 15px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+
+  .fund-card:hover {
+    transform: scale(1.02);
+  }
+
+  .fund-card.default {
+    border-top: 4px solid #007BFF;
+  }
+
+  .fund-card.custom {
+    border-top: 4px solid #28a745;
+  }
+
+  .fund-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .fund-amounts {
+    margin-bottom: 10px;
+  }
+
+  .amount-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .progress-container {
+    margin-top: 10px;
+  }
+
+  .progress-bar {
+    background: #ddd;
+    border-radius: 20px;
+    height: 10px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    background: linear-gradient(90deg, #007BFF, #00C6FF);
+    height: 10px;
+    width: 0;
+    transition: width 0.3s;
+  }
+
+  .progress-text {
+    text-align: right;
+    font-size: 12px;
+    margin-top: 5px;
+    color: #555;
+  }
+
+  button {
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background 0.3s ease;
+  }
+
+  button:hover {
+    background: #0056b3;
+  }
+
+  form {
+    max-width: 350px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  input {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+
+  .center {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .progress-container.large {
+    margin: 15px 0;
+  }
+
+  .progress-bar.large {
+    height: 15px;
+  }
