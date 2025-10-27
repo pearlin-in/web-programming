@@ -1,4 +1,3 @@
-
 body {
     font-family: 'Poppins', sans-serif;
     background: #f3f6fb;
@@ -99,6 +98,7 @@ body {
 
   button {
     background: #007BFF;
+    background: primary;
     color: white;
     border: none;
     border-radius: 10px;
