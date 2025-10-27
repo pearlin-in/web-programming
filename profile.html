@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Finance Tracker</title>
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">FinanceTracker</div>
+                <nav>
+                    <ul>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="transactions.html">Transactions</a></li>
+                        <li><a href="goals.html">Goals</a></li>
+                        <li><a href="profile.html" class="active">Profile</a></li>
+                        <li><a href="login.html">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-pic">
+                <div class="placeholder-pic">AJ</div>
+            </div>
+            <div class="profile-info">
+                <h1 id="userName">Alex Johnson</h1>
+                <p id="userEmail">alex.johnson@example.com</p>
+                <p id="memberSince">Member since: January 2023</p>
+                <button class="edit-profile-btn" id="editProfileBtn">Edit Profile</button>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="left-column">
+                <div class="card">
+                    <h2>Personal Information</h2>
+                    <form id="personalInfoForm">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" class="form-control" value="Alex Johnson" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" value="alex.johnson@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" value="+1 (555) 123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="currency">Preferred Currency</label>
+                            <select id="currency" class="form-control">
+                                <option value="USD" selected>USD ($)</option>
+                                <option value="EUR">EUR (€)</option>
+                                <option value="GBP">GBP (£)</option>
+                                <option value="JPY">JPY (¥)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="save-btn">Save Personal Info</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h2>Monthly Income</h2>
+                    <form id="incomeForm">
+                        <div class="form-group">
+                            <label for="monthlyIncome">Monthly Income ($)</label>
+                            <input type="number" id="monthlyIncome" class="form-control" value="3500" min="0" step="100" required>
+                        </div>
+                        <p class="help-text">Set your monthly income to help calculate budget recommendations.</p>
+                        <button type="submit" class="save-btn">Save Income</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="card">
+                    <h2>Budget Limits</h2>
+                    <form id="budgetForm">
+                        <div class="budget-category">
+                            <div class="category-icon">🏠</div>
+                            <div class="category-info">
+                                <div class="category-name">Housing</div>
+                                <div class="budget-limit">
+                                    <input type="number" class="form-control" value="1200" min="0" step="50" data-category="housing">
+                                    <span>/month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="budget-category">
+                            <div class="category-icon">🍕</div>
+                            <div class="category-info">
+                                <div class="category-name">Food & Dining</div>
+                                <div class="budget-limit">
+                                    <input type="number" class="form-control" value="400" min="0" step="25" data-category="food">
+                                    <span>/month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="budget-category">
+                            <div class="category-icon">🚗</div>
+                            <div class="category-info">
+                                <div class="category-name">Transportation</div>
+                                <div class="budget-limit">
+                                    <input type="number" class="form-control" value="250" min="0" step="25" data-category="transportation">
+                                    <span>/month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="budget-category">
+                            <div class="category-icon">🛍️</div>
+                            <div class="category-info">
+                                <div class="category-name">Shopping</div>
+                                <div class="budget-limit">
+                                    <input type="number" class="form-control" value="300" min="0" step="25" data-category="shopping">
+                                    <span>/month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="budget-category">
+                            <div class="category-icon">💊</div>
+                            <div class="category-info">
+                                <div class="category-name">Health & Wellness</div>
+                                <div class="budget-limit">
+                                    <input type="number" class="form-control" value="150" min="0" step="25" data-category="health">
+                                    <span>/month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="save-btn">Save Budget Limits</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h2>App Preferences</h2>
+                    <form id="preferencesForm">
+                        <div class="preference-item">
+                            <span>Push Notifications</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" data-preference="pushNotifications" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="preference-item">
+                            <span>Email Reports</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" data-preference="emailReports" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="preference-item">
+                            <span>Dark Mode</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" data-preference="darkMode">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="preference-item">
+                            <span>Biometric Login</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" data-preference="biometricLogin">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="preference-item">
+                            <span>Budget Alerts</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" data-preference="budgetAlerts" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="save-btn">Save Preferences</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 FinanceTracker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/profile.js"></script>
+</body>
+</html>
