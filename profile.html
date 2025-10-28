@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navbar -->
+    <!-- Navbar (same style as index.html) -->
     <nav class="navbar">
         <div class="nav-content">
             <div class="logo">
@@ -17,9 +17,9 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="savings.html">Savings</a></li>
-                <li><a href="transactions.html">Transactions</a></li>
-                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="#">Savings</a></li>
+                <li><a href="#">Transactions</a></li>
+                <li><a href="#" class="active">Profile</a></li>
             </ul>
             <button class="logout-btn">Logout</button>
         </div>
@@ -29,37 +29,36 @@
         <!-- Profile Header -->
         <div class="profile-header">
             <div class="profile-pic">
-                <div class="placeholder-pic" id="profileInitials">AJ</div>
+                <div class="placeholder-pic" id="profile-initials">AJ</div>
             </div>
             <div class="profile-info">
-                <h1 id="userName">Alex Johnson</h1>
-                <p id="userEmail">alex.johnson@example.com</p>
-                <p id="memberSince">Member since: January 2023</p>
+                <h1 id="displayName">Alex Johnson</h1>
+                <p id="displayEmail">alex.johnson@example.com</p>
                 <button id="editProfileBtn" class="edit-profile-btn">Edit Profile</button>
             </div>
         </div>
 
+        <!-- Profile Forms -->
         <div class="profile-content">
-            <!-- Left Column -->
             <div class="left-column">
                 <div class="card">
                     <h2>Personal Information</h2>
                     <form id="personalInfoForm">
                         <div class="form-group">
                             <label for="fullName">Full Name</label>
-                            <input type="text" id="fullName" class="form-control" required readonly>
+                            <input type="text" id="fullName" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" class="form-control" required readonly>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" readonly>
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="currency">Preferred Currency</label>
-                            <select id="currency" class="form-control" disabled>
+                            <label for="currency">Currency</label>
+                            <select id="currency" class="form-control">
                                 <option value="USD">$ USD</option>
                                 <option value="EUR">€ EUR</option>
                                 <option value="GBP">£ GBP</option>
@@ -75,90 +74,21 @@
                     <form id="incomeForm">
                         <div class="form-group">
                             <label for="monthlyIncome">Income ($)</label>
-                            <input type="number" id="monthlyIncome" class="form-control" min="0" step="100" required>
+                            <input type="number" id="monthlyIncome" class="form-control" min="0">
                         </div>
                         <button type="submit" class="save-btn">Save Income</button>
                     </form>
                 </div>
             </div>
 
-            <!-- Right Column -->
             <div class="right-column">
                 <div class="card">
-                    <h2>Budget Limits</h2>
-                    <form id="budgetForm">
-                        <div class="budget-category">
-                            <div class="category-icon">🏠</div>
-                            <div class="category-info">
-                                <div class="category-name">Housing</div>
-                                <input type="number" class="form-control" data-category="housing" min="0" step="50">
-                                <span>/month</span>
-                            </div>
-                        </div>
-                        <div class="budget-category">
-                            <div class="category-icon">🍕</div>
-                            <div class="category-info">
-                                <div class="category-name">Food & Dining</div>
-                                <input type="number" class="form-control" data-category="food" min="0" step="25">
-                                <span>/month</span>
-                            </div>
-                        </div>
-                        <div class="budget-category">
-                            <div class="category-icon">🚗</div>
-                            <div class="category-info">
-                                <div class="category-name">Transportation</div>
-                                <input type="number" class="form-control" data-category="transportation" min="0" step="25">
-                                <span>/month</span>
-                            </div>
-                        </div>
-                        <div class="budget-category">
-                            <div class="category-icon">🛍️</div>
-                            <div class="category-info">
-                                <div class="category-name">Shopping</div>
-                                <input type="number" class="form-control" data-category="shopping" min="0" step="25">
-                                <span>/month</span>
-                            </div>
-                        </div>
-                        <div class="budget-category">
-                            <div class="category-icon">💊</div>
-                            <div class="category-info">
-                                <div class="category-name">Health & Wellness</div>
-                                <input type="number" class="form-control" data-category="health" min="0" step="25">
-                                <span>/month</span>
-                            </div>
-                        </div>
-                        <button type="submit" class="save-btn">Save Budget Limits</button>
-                    </form>
-                </div>
-
-                <div class="card">
-                    <h2>App Preferences</h2>
+                    <h2>Preferences</h2>
                     <form id="preferencesForm">
-                        <div class="preference-item">
-                            <span>Push Notifications</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" data-preference="pushNotifications">
-                                <span class="slider"></span>
-                            </label>
-                        </div>
-                        <div class="preference-item">
-                            <span>Email Reports</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" data-preference="emailReports">
-                                <span class="slider"></span>
-                            </label>
-                        </div>
                         <div class="preference-item">
                             <span>Dark Mode</span>
                             <label class="toggle-switch">
-                                <input type="checkbox" data-preference="darkMode">
-                                <span class="slider"></span>
-                            </label>
-                        </div>
-                        <div class="preference-item">
-                            <span>Budget Alerts</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" data-preference="budgetAlerts">
+                                <input type="checkbox" id="darkModeToggle">
                                 <span class="slider"></span>
                             </label>
                         </div>
