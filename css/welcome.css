@@ -1,0 +1,39 @@
+/* Center everything on the page */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  text-align: center;
+}
+
+h1 {
+  font-size: 64px;
+  margin-bottom: 60px;
+}
+
+/* Common button styling */
+.btn {
+  display: block;
+  width: 300px;         /* same width for both */
+  padding: 20px;
+  margin: 20px auto;
+  font-size: 32px;      /* large font */
+  font-weight: 600;
+  background-color: #ddd;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ccc;
+}
