@@ -19,7 +19,7 @@
 
 body {
     background: linear-gradient(160deg, #f5f7fb, #e0e7ff);
-    color: var(--dark);
+    color: var(--primary);
     line-height: 1.6;
     transition: background 0.3s, color 0.3s;
 }
@@ -32,9 +32,9 @@ body {
 
 /* Navbar Styles */
 .navbar {
-    background: linear-gradient(135deg, #4361ee, #3f37c9);
+    background: linear-gradient(135deg, #ffffff, #ffffff);
     padding: 1rem 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px var(--gray);
 }
 
 .nav-content {
@@ -50,7 +50,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: white;
+    color: 3f37c9;
     font-size: 1.5rem;
     font-weight: bold;
 }
@@ -68,7 +68,7 @@ body {
 }
 
 .nav-menu a {
-    color: white;
+    color: var(--gray);
     text-decoration: none;
     font-weight: 500;
     padding: 0.5rem 1rem;
@@ -78,12 +78,13 @@ body {
 
 .nav-menu a:hover,
 .nav-menu a.active {
-    background-color: rgba(255,255,255,0.2);
+    color: var(--primary-color);
+    background: rgba(67, 97, 238, 0.1);
 }
 
 .logout-btn {
-    background-color: transparent;
-    border: 2px solid white;
+    background-color:var(--primary);
+    border: none;
     color: white;
     padding: 0.5rem 1.5rem;
     border-radius: 5px;
@@ -93,15 +94,15 @@ body {
 }
 
 .logout-btn:hover {
-    background-color: white;
-    color: #4361ee;
+    background-color: rgba(67, 27, 245, 0.971);
+    color: #ffffff;
 }
 
 /* Profile Header */
 .profile-header {
     display: flex;
     align-items: center;
-    background: linear-gradient(145deg, #ffffff, #f1f5f9);
+    background: linear-gradient(145deg, #ffffff, #7e94f6);
     border-radius: 15px;
     padding: 30px;
     margin: 30px 0;
@@ -187,7 +188,7 @@ body {
 }
 
 .card {
-    background: linear-gradient(145deg, #ffffff, #f1f5f9);
+    background: linear-gradient(145deg, #a0aeec, #afd5fb);
     border-radius: 15px;
     padding: 25px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
@@ -203,7 +204,7 @@ body {
 .card h2 {
     font-size: 1.4rem;
     margin-bottom: 20px;
-    color: var(--primary);
+    color: whitesmoke;
     border-bottom: 2px solid var(--light-gray);
     padding-bottom: 10px;
 }
@@ -217,7 +218,7 @@ body {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
-    color: var(--gray);
+    color: black;
 }
 
 .form-control {
@@ -304,7 +305,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: rgb(169, 167, 167);
     transition: 0.4s;
     border-radius: 24px;
 }
@@ -346,7 +347,32 @@ body.dark-mode {
 }
 
 body.dark-mode .navbar {
-    background: linear-gradient(135deg, #0a285a, #4067ab);
+    background: linear-gradient(135deg, #0e3c8c, #628eda);
+}
+body.dark-mode .profile-header {  
+    display: flex;
+    align-items: center;
+    background: linear-gradient(145deg, #bed1ff, #111f67);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px 0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode .nav-menu a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+body.dark-mode .nav-menu a:hover,
+body.dark-mode .nav-menu a.active {
+    color: rgb(255, 255, 255);
+    background: rgba(126, 158, 252, 0.502);
 }
 
 body.dark-mode .card,
@@ -371,11 +397,11 @@ body.dark-mode .form-group label,
 body.dark-mode .help-text,
 body.dark-mode footer,
 body.dark-mode .profile-info p {
-    color: #585f67;
+    color: #0e345f;
 }
 
 body.dark-mode .card h2 {
-    color: #63b3ed;
+    color: #072a56;
     border-bottom-color: #4a5568;
 }
 
