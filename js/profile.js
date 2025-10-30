@@ -1,60 +1,138 @@
-// Wait for the page to fully load
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Profile page loaded!');
-    
-    // Get all the form elements
-    const personalInfoForm = document.getElementById('personalInfoForm');
+document.addEventListener('DOMContentLoaded', () => {
+    const personalForm = document.getElementById('personalInfoForm');
     const incomeForm = document.getElementById('incomeForm');
     const budgetForm = document.getElementById('budgetForm');
     const preferencesForm = document.getElementById('preferencesForm');
+    const editBtn = document.getElementById('editProfileBtn');
+    const darkModeInput = document.querySelector('input[data-preference="darkMode"]');
+
+    // Load data from localStorage
+    loadData();
+
+    // Toggle edit mode
+    editBtn.addEventListener('click', () => {
+        const inputs = personalForm.querySelectorAll('input, select');
+        inputs.forEach(i => {
+            i.readOnly = !i.readOnly;
+            if (i.tagName === 'SELECT') i.disabled = !i.disabled;
+        });
+        editBtn.textContent = inputs[0].readOnly ? 'Edit Profile' : 'Cancel';
+    });
     
-    // Load any saved data when page loads
-    loadSavedData();
-    
-    // Set up form submissions
-    if (personalInfoForm) {
-        personalInfoForm.addEventListener('submit', handlePersonalInfoSubmit);
-    }
-    if (incomeForm) {
-        incomeForm.addEventListener('submit', handleIncomeSubmit);
-    }
-    if (budgetForm) {
-        budgetForm.addEventListener('submit', handleBudgetSubmit);
-    }
-    if (preferencesForm) {
-        preferencesForm.addEventListener('submit', handlePreferencesSubmit);
-    }
+// Remove readonly toggle on page load; make fields editable by default
+document.querySelectorAll('#personalInfoForm input, #personalInfoForm select').forEach(i => {
+    i.readOnly = false;
+    if (i.tagName === 'SELECT') i.disabled = false;
 });
 
-// Load saved data from browser storage
-function loadSavedData() {
-    console.log('Loading saved data...');
-    // This will be filled in later
-}
+// Optional: keep the Edit Profile button for toggle
+editBtn.addEventListener('click', () => {
+    const inputs = personalForm.querySelectorAll('input, select');
+    const isReadOnly = !inputs[0].readOnly; // current state
+    inputs.forEach(i => {
+        i.readOnly = isReadOnly;
+        if (i.tagName === 'SELECT') i.disabled = isReadOnly;
+    });
+    editBtn.textContent = isReadOnly ? 'Edit Profile' : 'Cancel';
+});
 
-// Handle personal info form submission
-function handlePersonalInfoSubmit(event) {
-    event.preventDefault();
-    console.log('Saving personal info...');
-    alert('Personal information saved!');
-}
+    personalForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const data = {
+            fullName: document.getElementById('fullName').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            currency: document.getElementById('currency').value
+        };
+        localStorage.setItem('personalInfo', JSON.stringify(data));
+        document.getElementById('userName').textContent = data.fullName;
+        document.getElementById('userEmail').textContent = data.email;
+        document.getElementById('profileInitials').textContent = data.fullName.split(' ').map(n => n[0]).join('');
+        showNotification('Personal info saved ✅');
+    });
 
-// Handle income form submission  
-function handleIncomeSubmit(event) {
-    event.preventDefault();
-    console.log('Saving income...');
-    alert('Income saved!');
-}
+    incomeForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const income = document.getElementById('monthlyIncome').value;
+        localStorage.setItem('monthlyIncome', income);
+        showNotification('Income saved ✅');
+    });
 
-// Handle budget form submission
-function handleBudgetSubmit(event) {
-    event.preventDefault();
-    console.log('Saving budget limits...');
-    alert('Budget limits saved!');
-}
+    budgetForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const limits = {};
+        budgetForm.querySelectorAll('input[data-category]').forEach(input => {
+            limits[input.dataset.category] = input.value;
+        });
+        localStorage.setItem('budgetLimits', JSON.stringify(limits));
+        showNotification('Budget limits saved ✅');
+    });
 
-// Handle preferences form submission
-function handlePreferencesSubmit(event) {
-    event.preventDefault();
-    console.log('Saving preferences...');
-    alert('Preferences saved!'); }
+    preferencesForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const prefs = {};
+        preferencesForm.querySelectorAll('input[type="checkbox"]').forEach(input => {
+            prefs[input.dataset.preference] = input.checked;
+        });
+        localStorage.setItem('preferences', JSON.stringify(prefs));
+        applyDarkMode(prefs.darkMode);
+        showNotification('Preferences saved ✅');
+    });
+
+    darkModeInput.addEventListener('change', e => {
+        applyDarkMode(e.target.checked);
+        const prefs = JSON.parse(localStorage.getItem('preferences') || '{}');
+        prefs.darkMode = e.target.checked;
+        localStorage.setItem('preferences', JSON.stringify(prefs));
+    });
+
+    function loadData() {
+        // Personal info
+        const info = JSON.parse(localStorage.getItem('personalInfo') || '{}');
+        if (info.fullName) {
+            document.getElementById('fullName').value = info.fullName;
+            document.getElementById('email').value = info.email || '';
+            document.getElementById('phone').value = info.phone || '';
+            document.getElementById('currency').value = info.currency || 'USD';
+            document.getElementById('userName').textContent = info.fullName;
+            document.getElementById('userEmail').textContent = info.email || '';
+            document.getElementById('profileInitials').textContent = info.fullName.split(' ').map(n => n[0]).join('');
+        }
+
+        // Income
+        document.getElementById('monthlyIncome').value = localStorage.getItem('monthlyIncome') || '';
+
+        // Budget
+        const budget = JSON.parse(localStorage.getItem('budgetLimits') || '{}');
+        Object.keys(budget).forEach(cat => {
+            const input = document.querySelector(`input[data-category="${cat}"]`);
+            if (input) input.value = budget[cat];
+        });
+
+        // Preferences
+        const prefs = JSON.parse(localStorage.getItem('preferences') || '{}');
+        Object.keys(prefs).forEach(p => {
+            const input = document.querySelector(`input[data-preference="${p}"]`);
+            if (input) input.checked = prefs[p];
+        });
+        applyDarkMode(prefs.darkMode);
+    }
+
+    function applyDarkMode(enabled) {
+        if (enabled) document.body.classList.add('dark-mode');
+        else document.body.classList.remove('dark-mode');
+    }
+
+    function showNotification(msg) {
+        const n = document.createElement('div');
+        n.className = 'notification';
+        n.textContent = msg;
+        Object.assign(n.style, {
+            position: 'fixed', top: '20px', right: '20px',
+            background: '#4caf50', color: '#fff', padding: '10px 20px',
+            borderRadius: '5px', zIndex: 1000
+        });
+        document.body.appendChild(n);
+        setTimeout(() => n.remove(), 2500);
+    }
+});
