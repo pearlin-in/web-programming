@@ -30,6 +30,10 @@ const fundManager = {
     addMoney: function(id, amount) {
         if (this.funds[id]) {
             this.funds[id].current += parseFloat(amount);
+            // Prevent negative balance
+            if (this.funds[id].current < 0) {
+                this.funds[id].current = 0;
+            }
             this.saveFunds();
             return true;
         }
@@ -126,7 +130,7 @@ function showAddFund() {
     $('#fundName').val('');
     $('#targetAmount').val('');
 
-    showPage('addFundPage'); // removed reset
+    showPage('addFundPage');
 }
 
 function showFundDetails(fundId) {
@@ -136,7 +140,7 @@ function showFundDetails(fundId) {
     $('#detailFundNameTitle').text((fund.icon ? fund.icon + ' ' : '') + fund.name);
     $('#detailTargetAmount').val(fund.target);
     $('#detailCurrentAmount').val('$' + fund.current.toLocaleString());
-    $('#addMoneyAmount').val('');
+    $('#adjustMoneyAmount').val('');
     
     const progress = fundManager.getProgress(fundId);
     $('#detailProgressFill').css('width', progress + '%');
@@ -150,7 +154,6 @@ function showFundDetails(fundId) {
     
     showPage('fundDetailsPage');
 }
-
 
 function renderFunds() {
     const grid = $('#fundsGrid');
@@ -202,11 +205,14 @@ $('#addFundForm').on('submit', function(e) {
 function updateFund() {
     const fund = fundManager.funds[currentFundId];
     const newTarget = parseFloat($('#detailTargetAmount').val());
-    const addAmount = parseFloat($('#addMoneyAmount').val());
+    const adjustAmount = parseFloat($('#adjustMoneyAmount').val());
 
-    if (!isNaN(addAmount) && addAmount > 0) {
-        fundManager.addMoney(currentFundId, addAmount);
+    // Adjust money (positive = add, negative = subtract)
+    if (!isNaN(adjustAmount) && adjustAmount !== 0) {
+        fundManager.addMoney(currentFundId, adjustAmount);
     }
+    
+    // Update target
     if (!isNaN(newTarget) && newTarget > 0 && newTarget !== fund.target) {
         fundManager.updateTarget(currentFundId, newTarget);
     }
@@ -221,4 +227,3 @@ function deleteFund() {
         }
     }
 }
-
