@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transactions | Aureus Flow</title>
+    <link rel="stylesheet" href="css/transactions.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+      <div class="nav-content">
+        <div class="logo">
+          <i class="fa-solid fa-wallet"></i>
+          Aureus Flow
+        </div>
+        <ul class="nav-menu">
+          <li><a href="./welcome.html">Home</a></li>
+          <li><a href="./savings.html">Savings</a></li>
+          <li><a href="#" class="active">Transactions</a></li>
+          <li><a href="./profile.html">Profile</a></li>
+        </ul>
+        <button class="logout-btn">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Transactions section -->
+    <main class="transactions-main">
+      <section class="history">
+        <h1>Transaction History</h1>
+        <ul class="history-list">
+            <li class="history-item"></div>
+        </ul>
+      </section>
+      <aside class="sidebar">
+        <div class="progress-bar">
+            <h2>Progress Bar</h2>
+            <div class="progress-container">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+        <div class="categories">
+            <h2>Categories</h2>
+            <!--Insert category by typing in-->
+            <form action="/submit-category" method="POST" class="category-form">
+                <input
+                    type="text"
+                    id="categoryInput"
+                    placeholder="Add a new category"
+                    required
+                />
+            </form>
+            <button type="submit">Add</button>
+            <ul class="category-list" id="categoryList">
+                <!-- Category items will be dynamically inserted here -->
+            </ul>
+        </div>
+      <aside>
+    </main>
+
+    <script src="transactions.js"></script>
+  </body>
+</html>
