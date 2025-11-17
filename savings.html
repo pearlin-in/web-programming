@@ -1,98 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Savings Fund Manager</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/savings.css">
-    <link rel="stylesheet" href="/css/homepage.css">
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/savings.css" />
+  </head>
+  <body>
     <!-- Top Navigation -->
     <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">
-                <i class="fas fa-wallet"></i>
-                <span>Aureus Flow</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#" class="active">Savings</a></li>
-                <li><a href="#">Transactions</a></li>
-                <li><a href="#">Profile</a></li>
-            </ul>
-            <button class="logout-btn">Logout</button>
+      <div class="nav-content">
+        <div class="logo">
+          <i class="fas fa-wallet"></i>
+          <span>Aureus Flow</span>
         </div>
+        <ul class="nav-menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#" class="active">Savings</a></li>
+          <li><a href="#">Transactions</a></li>
+          <li><a href="#">Profile</a></li>
+        </ul>
+        <button class="logout-btn">Logout</button>
+      </div>
     </nav>
 
     <!-- MAIN PAGE -->
     <div id="mainPage" class="page active">
-        <h2>My Funds</h2>
-        <div id="fundsGrid"></div>
-        <div class="center">
-            <button onclick="showAddFund()">+ Create Fund</button>
-        </div>
+      <h2>My Funds</h2>
+      <div id="fundsGrid"></div>
+      <div class="center">
+        <button onclick="showAddFund()">+ Create Fund</button>
+      </div>
     </div>
 
     <!-- ADD FUND PAGE -->
     <div id="addFundPage" class="page">
-        <h2>Create New Fund</h2>
-        <div class="form-container">
-            <form id="addFundForm">
-                <div class="form-group">
-                    <label for="fundName">Fund Name</label>
-                    <input type="text" id="fundName" placeholder="e.g., Vacation Fund" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="targetAmount">Target Amount</label>
-                    <input type="number" id="targetAmount" placeholder="e.g., 5000" required>
-                </div>
-                
-                <div class="button-group">
-                    <button type="submit">Create Fund</button>
-                    <button type="button" onclick="showMain()">Cancel</button>
-                </div>
-            </form>
-        </div>
+      <h2>Create New Fund</h2>
+      <div class="form-container">
+        <form id="addFundForm">
+          <div class="form-group">
+            <label for="fundName">Fund Name</label>
+            <input
+              type="text"
+              id="fundName"
+              placeholder="e.g., Vacation Fund"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="targetAmount">Target Amount</label>
+            <input
+              type="number"
+              id="targetAmount"
+              placeholder="e.g., 5000"
+              required
+            />
+          </div>
+
+          <div class="button-group">
+            <button type="submit">Create Fund</button>
+            <button type="button" onclick="showMain()">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <!-- FUND DETAILS PAGE -->
     <div id="fundDetailsPage" class="page">
-        <h2 id="detailFundNameTitle"></h2>
-        <div class="details-container">
-            <div class="form-group">
-                <label>Current Amount:</label>
-                <input type="text" id="detailCurrentAmount" readonly>
-            </div>
-            
-            <div class="form-group">
-                <label>Target Amount:</label>
-                <input type="number" id="detailTargetAmount">
-            </div>
-            
-            <div class="form-group">
-              <label>Adjust Amount</label>
-              <input type="number" id="adjustMoneyAmount" placeholder="Enter amount (e.g., 100 or -50)" step="0.01">
-            </div>
-            
-            <div class="progress-container large">
-                <div class="progress-bar large">
-                    <div id="detailProgressFill" class="progress-fill"></div>
-                </div>
-                <div id="detailProgressText" class="progress-text"></div>
-            </div>
-            
-            <div class="button-group">
-                <button onclick="updateFund()">Update Fund</button>
-                <button id="deleteFundBtn" onclick="deleteFund()">Delete Fund</button>
-                <button onclick="showMain()">Back</button>
-            </div>
+      <h2 id="detailFundNameTitle"></h2>
+      <div class="details-container">
+        <div class="form-group">
+          <label>Current Amount:</label>
+          <input type="text" id="detailCurrentAmount" readonly />
         </div>
+
+        <div class="form-group">
+          <label>Target Amount:</label>
+          <input type="number" id="detailTargetAmount" />
+        </div>
+
+        <div class="form-group">
+          <label>Adjust Amount</label>
+          <input
+            type="number"
+            id="adjustMoneyAmount"
+            placeholder="Enter amount (e.g., 100 or -50)"
+            step="0.01"
+          />
+        </div>
+
+        <div class="progress-container large">
+          <div class="progress-bar large">
+            <div id="detailProgressFill" class="progress-fill"></div>
+          </div>
+          <div id="detailProgressText" class="progress-text"></div>
+        </div>
+
+        <div class="button-group">
+          <button onclick="updateFund()">Update Fund</button>
+          <button id="deleteFundBtn" onclick="deleteFund()">Delete Fund</button>
+          <button onclick="showMain()">Back</button>
+        </div>
+      </div>
     </div>
 
     <script src="/js/savings.js"></script>
-</body>
+  </body>
 </html>

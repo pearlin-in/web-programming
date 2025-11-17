@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Transactions | Aureus Flow</title>
     <link rel="stylesheet" href="css/transactions.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
+    <link rel="stylesheet" href="/css/homepage.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
     <!-- Navigation bar -->
@@ -32,6 +30,13 @@
     <main class="transactions-main">
       <section class="history">
         <h1>Transaction History</h1>
+        <button id="addTransactionBtn">Add Transaction</button>
+        <form id="transactionForm" style="margin-top: 20px; display: none;">
+          <input type="number" id="amountInput" placeholder="Amount" required />
+          <input type="text" id="descriptionInput" placeholder="Description" required />
+          <input type="date" id="dateInput" required />
+          <button type="submit" onclick="submitTransaction()">Save</button>
+        </form>
         <ul class="history-list">
             <li class="history-item"></div>
         </ul>
@@ -44,22 +49,21 @@
             </div>
         </div>
         <div class="categories">
-            <h2>Categories</h2>
-            <!--Insert category by typing in-->
-            <form action="/submit-category" method="POST" class="category-form">
-                <input
-                    type="text"
-                    id="categoryInput"
-                    placeholder="Add a new category"
-                    required
-                />
-            </form>
+          <h2>Categories</h2>
+
+          <form id="categoryForm" class="category-form">
+            <input
+              type="text"
+              id="categoryInput"
+              placeholder="Add a new category"
+              required
+            />
             <button type="submit">Add</button>
-            <ul class="category-list" id="categoryList">
-                <!-- Category items will be dynamically inserted here -->
-            </ul>
+          </form>
+
+          <ul class="category-list" id="categoryList"></ul>
         </div>
-      <aside>
+      </aside>
     </main>
 
     <script src="transactions.js"></script>
