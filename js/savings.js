@@ -110,7 +110,7 @@ const fundManager = {
     }
 };
 
-// Initialize
+// Initialise
 fundManager.loadFunds();
 
 let currentFundId = null;

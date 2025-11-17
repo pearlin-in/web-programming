@@ -232,7 +232,7 @@ $(document).on('click', '.btn-primary', function() {
     alert('Goal setting functionality will be added soon!');
 });
 
-// ===== INITIALIZATION =====
+// ===== INITIALISATION =====
 
 // Run when page loads
 $(document).ready(function() {
