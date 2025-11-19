@@ -144,12 +144,14 @@ export default function Transactions() {
     ? Math.max(0, Math.min(100, (remaining / income) * 100))
     : 0;
   useEffect(() => {
-    if (remaining <= 1000 && remaining > 0) {
+    // Only show when remaining is <= 30% of monthly income, and not negative
+    if (income > 0 && remaining <= 0.3 * income && remaining > 0) {
       if (window.showBudgetAlertWithJQuery) {
         window.showBudgetAlertWithJQuery();
       }
     }
-  }, [remaining]);
+  }, [remaining, income]);
+
 
   return (
     <div>
